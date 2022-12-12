@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+    backend:
+        build: /Users/wzn/Documents/WZN/Efrei/internationalproj/web/simple-api-student-main
+        networks: 
+          ["my-network"]
+        depends_on: 
+          ["database"]
+
+
+    database:
+        build: /Users/wzn/Documents/WZN/Efrei/internationalproj/web/database
+        networks:
+          ["my-network"]
+
+
+    httpd:
+        build: /Users/wzn/Documents/WZN/Efrei/internationalproj/web/http
+        ports: ["8088:80"]
+        networks:
+          ["my-network"]
+        depends_on:
+          ["backend"]
+
+networks:
+    my-network: 
