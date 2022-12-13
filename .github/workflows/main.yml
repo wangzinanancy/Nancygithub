@@ -46,6 +46,8 @@ jobs:
           context: ./simple-api-student-main
           # Note: tags has to be all lower-case
           tags:  ${{secrets.DOCKER_USER}}/simple-api
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push database
         # DO the same for database
@@ -55,6 +57,8 @@ jobs:
           context: ./database
           # Note: tags has to be all lower-case
           tags:  ${{secrets.DOCKER_USER}}/database
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
         
       - name: Build image and push httpd
         # DO the same for httpd
@@ -64,5 +68,14 @@ jobs:
           context: ./http
           # Note: tags has to be all lower-case
           tags:  ${{secrets.DOCKER_USER}}/http
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
+          
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+    
+
+
 
 
