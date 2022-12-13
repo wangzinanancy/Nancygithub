@@ -56,7 +56,6 @@ jobs:
           # Note: tags has to be all lower-case
           tags:  ${{secrets.DOCKER_USER}}/database
         
-
       - name: Build image and push httpd
         # DO the same for httpd
         uses: docker/build-push-action@v3
