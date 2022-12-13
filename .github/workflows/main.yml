@@ -4,6 +4,8 @@ on:
   push:
     branches: #TODO
       - main
+      - 'mona/octocat'
+      - 'releases/**'
   pull_request:
 
 jobs:
